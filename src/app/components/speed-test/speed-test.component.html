@@ -1,1 +1,10 @@
-<p>speed-test works!</p>
+<div *ngIf="downloadInProgress || uploadInProgress">
+    <div class="loading-indicator"></div>
+</div>
+<button (click)="startTest()" [disabled]="downloadInProgress || uploadInProgress">Start Test</button>
+<div *ngIf="downloadSpeed > 0">
+    Download Speed: {{ downloadSpeed | number: '1.2-2' }} Mbps
+</div>
+<div *ngIf="uploadSpeed > 0">
+    Upload Speed: {{ uploadSpeed | number: '1.2-2' }} Mbps
+</div>

@@ -1,0 +1,4 @@
+<div *ngIf="clientInfo">
+    <p>Client IP: {{ clientInfo?.ip_address }}</p>
+    <p>ISP: {{ clientInfo.connection?.organization_name }}</p>
+</div>
