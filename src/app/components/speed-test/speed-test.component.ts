@@ -28,7 +28,7 @@ export class SpeedTestComponent {
 
     const ip = userInfo?.ip || 'Unknown IP';
     const isp = userInfo?.isp || 'Unknown ISP';
-    const city = userInfo?.city || 'Unknown ISP';
+    const city = userInfo?.city || 'Unknown City';
 
     this.userInfoService.storeUserInfoInSessionStorage(ip, isp, city);
 

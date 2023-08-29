@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
 import { SpeedTestComponent } from './components/speed-test/speed-test.component';
 import { ClientInfoComponent } from './components/client-info/client-info.component';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LineChartComponent,
     SpeedTestComponent,
-    ClientInfoComponent
+    ClientInfoComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,

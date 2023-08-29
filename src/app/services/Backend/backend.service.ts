@@ -18,5 +18,8 @@ export class BackendService {
     return this.http.get<any[]>(endpoint);
   }
 
-
+  getIspResult(location: string) {
+    const endpoint = `${this.apiUrl}/stats/ISP?location=${location}`;
+    return this.http.get<any[]>(endpoint);
+  }
 }
