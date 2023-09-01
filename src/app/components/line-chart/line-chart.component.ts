@@ -1,8 +1,8 @@
 import { Component, OnInit, Type } from '@angular/core';
 import { BackendService } from 'src/app/services/Backend/backend.service';
-import { ChartConfiguration, ChartType } from 'chart.js';
+import { ChartConfiguration, ChartType } from 'chart.js/auto';
 import 'chartjs-adapter-moment';
-
+import { Chart } from 'chart.js';
 @Component({
   selector: 'app-line-chart',
   templateUrl: './line-chart.component.html',
@@ -13,6 +13,7 @@ export class LineChartComponent implements OnInit {
   date: any[] = [];
   uploadSpeed: number[] = [];
   downloadSpeed: number[] = [];
+  chart: any;
 
   constructor(private backendService: BackendService) { }
 
@@ -21,46 +22,32 @@ export class LineChartComponent implements OnInit {
     this.backendService.getHistoricalData(userId).subscribe(
       data => {
         this.historicalData = data;
-        console.log(this.historicalData);
+        console.log(this.historicalData.map(d => d.date));
       }
     );
+    this.createChart();
   }
 
-  public lineChartData = [{
-    data: this.historicalData.map(up => up.uploadSpeed),
-    label: 'uploads', backgroundColor: 'blue'
-  }];
-
-  public lineChartLabels = this.historicalData.map((d) => d.date);
-  public lineChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    scales: {
-      x: {
-        type: 'time',
-        time: {
-          unit: 'month',
-          displayFormats: {
-            day: 'MMM D'
-          }
+  createChart() {
+    this.chart = new Chart('line-chart', {
+      type: 'line',
+      data: {
+        labels: ['blue', 'black', 'green', 'red'], //this.ispResults.map(d => d.isp)
+        datasets: [{
+          label: 'download speed',
+          data: [1, 2, 3, 4],//this.ispResults.map(d => d.downloadSpeed),
+          backgroundColor: '#c5d5cb'
         },
-        title: {
-          display: true,
-          text: 'Date'
-        }
+        {
+          label: "upload speed",
+          data: [4, 3, 2, 1],//this.ispResults.map(d => d.uploadSpeed),
+          backgroundColor: '#9fa88a3'
+        }]
       },
-      y: {
-        position: 'left',
-      },
-      y1: {
-        position: 'right',
-        grid: {
-          color: 'rgb(255,0,0,0.3)',
-        },
-        ticks: {
-          color: 'red'
-        }
+      options: {
+        aspectRatio: 2.5
       }
-    }
-  };
-  public lineChartType: ChartType = 'line';
+    });
+  }
+
 }

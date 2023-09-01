@@ -1,27 +1,26 @@
 # NetworkTest
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
+<p></p>
 
-## Development server
+![design](https://github.com/tsxepo-web/test-internet-speed-frontend/blob/master/speedTestFront.drawio.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## URLs
+* Frontend:[Test-Internet-Speed](https://gray-glacier-0556ff10f.3.azurestaticapps.net).
+* Backend: [myInternetSpeedTest](https://github.com/tsxepo-web/MyInternetSpeed.git).
 
-## Code scaffolding
+# About the project
+* This project test the client's upload and download speed.
+* The frontend is made up of the three components below.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## The Pie chart
+* this chart is responsible for the actual testing, where you can visualize the upload and download speed as it happens.
 
-## Build
+## The Line chart
+* this chart is responsible for showing the client's data.
+* the x-axis is the date the client checked their speed.
+* the y-axis shows the client's speed during thos times.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## The Bar chart
+* this chart is responsible for the ISP result based on regions.
+* the x-axis shows the ISPs in a region.
+* th y-axis shows the avarage speed per ISP.

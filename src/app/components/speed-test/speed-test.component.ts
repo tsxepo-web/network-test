@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { concatMap } from 'rxjs';
 import { BackendService } from 'src/app/services/Backend/backend.service';
 import { DownloadSpeedService } from 'src/app/services/download/download-speed.service';
+import { SpeedDataService } from 'src/app/services/speed-data/speed-data.service';
 import { UploadSpeedService } from 'src/app/services/upload/upload-speed.service';
 import { UserInfoService } from 'src/app/services/user/user-info.service';
 
@@ -20,7 +21,8 @@ export class SpeedTestComponent {
     private downloadService: DownloadSpeedService,
     private uploadService: UploadSpeedService,
     private backendService: BackendService,
-    private userInfoService: UserInfoService) { }
+    private userInfoService: UserInfoService,
+    private speedDataService: SpeedDataService) { }
 
   startTest() {
     const userId = this.userInfoService.getUserId();
@@ -39,6 +41,7 @@ export class SpeedTestComponent {
       .pipe(
         concatMap((downloadDuration) => {
           this.downloadSpeed = this.calculateSpeed(downloadDuration.duration, downloadDuration.fileSize);
+          this.speedDataService.setDownloadSpeed(this.downloadSpeed);
           this.downloadInProgress = false;
           return this.uploadService.uploadFile();
         })
@@ -46,6 +49,7 @@ export class SpeedTestComponent {
       .subscribe(
         uploadDuration => {
           this.uploadSpeed = this.calculateSpeed(uploadDuration.duration, uploadDuration.fileSize);
+          this.speedDataService.setUploadSpeed(this.uploadSpeed);
           this.uploadInProgress = false;
 
           const data = {
@@ -58,7 +62,6 @@ export class SpeedTestComponent {
             DownloadSpeed: this.downloadSpeed,
             Date: new Date().toISOString()
           };
-          console.log(data);
           this.backendService.saveData(data).subscribe(
             response => {
               console.log('Data saved:', response);

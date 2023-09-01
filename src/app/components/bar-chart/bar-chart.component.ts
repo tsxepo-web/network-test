@@ -4,10 +4,6 @@ import { ChartConfiguration, ChartType } from 'chart.js/auto';
 import { BackendService } from 'src/app/services/Backend/backend.service';
 import { UserInfoService } from 'src/app/services/user/user-info.service';
 
-interface ispResults {
-  location: string
-  isPs: any[]
-}
 
 @Component({
   selector: 'app-bar-chart',
@@ -18,8 +14,6 @@ export class BarChartComponent implements OnInit {
   ispResults: any[] = [];
   chart: any;
   isps: any[] = [];
-
-
 
   ngOnInit(): void {
     this.getResults();
@@ -36,7 +30,7 @@ export class BarChartComponent implements OnInit {
       (data: any) => {
         this.ispResults = data.isPs;
         //console.log(this.ispResults);
-        console.log(this.ispResults.map(d => d.downloadSpeed));
+        console.log(this.ispResults.map(d => d.isp));
       }
     );
   }
@@ -45,16 +39,16 @@ export class BarChartComponent implements OnInit {
     this.chart = new Chart('bar-chart', {
       type: 'bar',
       data: {
-        labels: this.ispResults.map(d => d.isp),
+        labels: ['blue', 'black', 'green', 'red'], //this.ispResults.map(d => d.isp)
         datasets: [{
           label: 'download speed',
-          data: this.ispResults.map(d => d.downloadSpeed),
-          backgroundColor: 'blue'
+          data: [1, 2, 3, 4],//this.ispResults.map(d => d.downloadSpeed),
+          backgroundColor: '#c5d5cb'
         },
         {
           label: "upload speed",
-          data: this.ispResults.map(d => d.uploadSpeed),
-          backgroundColor: 'limegreen'
+          data: [4, 3, 2, 1],//this.ispResults.map(d => d.uploadSpeed),
+          backgroundColor: '#e3e0cf'
         }]
       },
       options: {

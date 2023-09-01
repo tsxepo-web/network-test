@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { SpeedDataService } from 'src/app/services/speed-data/speed-data.service';
 import { UserInfoService } from 'src/app/services/user/user-info.service';
 
 @Component({
@@ -7,15 +8,29 @@ import { UserInfoService } from 'src/app/services/user/user-info.service';
   styleUrls: ['./client-info.component.css']
 })
 export class ClientInfoComponent implements OnInit {
-  clientInfoService: any;
+  downloadSpeed: number = 0;
+  uploadSpeed: number = 0;
 
-  constructor(private userInfoService: UserInfoService) { }
+  constructor(
+    private userInfoService: UserInfoService,
+    private speedDataService: SpeedDataService) { }
+
   clientInfo: any = {};
   userId: string = '';
 
   ngOnInit(): void {
+    this.speedDataService.downloadSpeed$.subscribe(speed => {
+      this.downloadSpeed = speed;
+    });
+
+    this.speedDataService.uploadSpeed$.subscribe(speed => {
+      this.uploadSpeed = speed;
+    });
     this.fetchClientInfo();
     this.userId = this.userInfoService.getUserId();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+
   }
   fetchClientInfo() {
     this.userInfoService.getUserInfo().subscribe(
