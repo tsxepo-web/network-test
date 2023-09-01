@@ -2,7 +2,7 @@
 
 <p></p>
 
-![design](https://github.com/tsxepo-web/test-internet-speed-frontend/blob/master/speedTestFront.drawio.png)
+![design](https://github.com/tsxepo-web/network-test/blob/master/src/assets/speedTestFront.drawio.png)
 
 ## URLs
 * Frontend:[Test-Internet-Speed](https://gray-glacier-0556ff10f.3.azurestaticapps.net).
@@ -12,9 +12,9 @@
 * This project test the client's upload and download speed.
 * The frontend is made up of the three components below.
 
-## The Pie chart
-* this chart is responsible for the actual testing, where you can visualize the upload and download speed as it happens.
-
+## Start
+* click start the begine testing your network.
+* the values will be shown under the ip and isp information once done.
 ## The Line chart
 * this chart is responsible for showing the client's data.
 * the x-axis is the date the client checked their speed.
