@@ -13,7 +13,7 @@
 * The frontend is made up of the three components below.
 
 ## Main
-* click start the begine testing your network.
+* click start the begin testing your network.
 * the values will be shown under the ip and isp information once done.
 ## The Line chart
 * this chart is responsible for showing the client's data.
